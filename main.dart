@@ -33,6 +33,10 @@ class MyApp extends StatelessWidget {
 class MyAppState extends ChangeNotifier {
   //state MyAppState disini dengan 2 kata random yang digabung, katarandom tsb disimpan di variable WordPair
   var current = WordPair.random();
+  void getNext() {
+    current = WordPair.random();
+    notifyListeners();
+  }
 }
 //membuat layout 
 class MyHomePage extends StatelessWidget {
@@ -49,7 +53,8 @@ class MyHomePage extends StatelessWidget {
                     ElevatedButton(
             onPressed: () {
               print('button pressed!');
-            },
+                appState.getNext();  // ← This instead of print().
+      },
             child: Text('Next'),
           ),
               
